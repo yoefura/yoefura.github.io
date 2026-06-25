@@ -148,6 +148,36 @@
     .course-teacher { font-size: 12.5px; color: var(--mid); }
     .course-teacher a { color: var(--mid); text-decoration: none; transition: color 0.15s; }
     .course-teacher a:hover { color: var(--black); text-decoration: underline; }
+
+    /* ── RESPONSIVE MÓVIL ── */
+    @media (max-width: 700px) {
+      body { padding: 20px 12px; align-items: flex-start; }
+
+      /* Home: apila columnas */
+      #page-home .outer-card {
+        grid-template-columns: 1fr;
+        min-height: unset;
+      }
+      .divider-v { display: none; }
+      .left { padding: 36px 28px 28px 28px; }
+      .right { padding: 0 28px 36px 28px; }
+
+      /* Personal: apila top-row y bottom-row */
+      .top-row { grid-template-columns: 1fr; }
+      .bottom-row { grid-template-columns: 1fr; }
+      .photo-box { max-width: 260px; margin: 0 auto; }
+
+      /* Profesional: apila content-grid */
+      .content-grid { grid-template-columns: 1fr; }
+      .col-divider { display: none; }
+
+      /* Outer card padding reducido */
+      .outer-card { padding: 32px 22px; }
+
+      /* Data rows en móvil: una sola columna */
+      .data-row { grid-template-columns: 1fr; gap: 2px; }
+      .data-label { font-size: 11px; color: var(--mid); }
+    }
   </style>
 </head>
 <body>
@@ -225,12 +255,11 @@
       <div class="box">
         <p class="section-subtitle"><span class="icon">🤝</span> Red de Contactos</p>
         <div class="thin-line"></div>
-        <div class="contact-item"><a href="https://www.linkedin.com/in/octavio-dante-valenzuela-pareja-32a044406" target="_blank" rel="noopener">Octavio Dante Valenzuela Pareja</a></div>
-        <div class="contact-item"><a href="https://www.linkedin.com/in/kiara-geraldine-zapana-yucra-661663346" target="_blank" rel="noopener">Kiara Geraldine Zapana Yucra</a></div>
-        <div class="contact-item"><a href="https://www.linkedin.com/in/anderson-jose-morales-alejandro-464717406" target="_blank" rel="noopener">Anderson José Morales Alejandro</a></div>
-        <div class="contact-item"><a href="https://www.linkedin.com/in/naysha-puquio-gonzalo-16ou6ts1de" target="_blank" rel="noopener">Naysha Nadinne Puquio Gonzalo</a></div>
-        <div class="contact-item"><a href="https://www.linkedin.com/in/patrick-jusephy-melo-ramos-a3b86640a" target="_blank" rel="noopener">Patrick Jusephy Melo Ramos</a></div>
-        <div class="contact-item"><a href="https://www.linkedin.com/in/fabrizio-carlos-mau-mateo-671291406" target="_blank" rel="noopener">Fabrizio Carlos Mau Mateo</a></div>
+        <div class="contact-item"><a href="https://patrickmelorr-lang.github.io/mi-p-gina-web-personal/" target="_blank" rel="noopener">Patrick Jusephy Melo Ramos</a></div>
+        <div class="contact-item"><a href="https://emmanuelmendez-cpu.github.io/" target="_blank" rel="noopener">Joel Emmanuel Méndez Rosales</a></div>
+        <div class="contact-item"><a href="https://lucerohuinchoh-jus.github.io/" target="_blank" rel="noopener">Lucero Huincho Huamaní</a></div>
+        <div class="contact-item"><a href="https://kiarazy16.github.io/Trabajo-de-ICC/" target="_blank" rel="noopener">Kiara Geraldine Zapana Yucra</a></div>
+        <div class="contact-item"><a href="https://aleesullc.github.io/" target="_blank" rel="noopener">Alexandra Sullca Tintaya</a></div>
       </div>
     </div>
   </div>
