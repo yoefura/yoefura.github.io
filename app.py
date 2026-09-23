@@ -3,116 +3,116 @@ import pandas as pd
 
 # Configuración del entorno web
 st.set_page_config(
-    page_title="Modelo de Calidad del Aire", 
+    page_title="Tabla de Verdad - Caso 3", 
     layout="centered",
     initial_sidebar_state="collapsed"
 )
 
-# Estilo visual con temática del medio ambiente
+# Estilo visual adaptado a la temática ambiental de la imagen
 st.markdown("""
     <style>
     .stApp {
-        background-color: #f4f7f5;
-        background-image: linear-gradient(135deg, rgba(220,237,225,0.6) 0%, rgba(244,247,245,1) 100%);
+        background-color: #0d1f1d;
+        background-image: linear-gradient(135deg, #071412 0%, #0d2822 100%);
+        color: #e0f2f1;
     }
     h1 {
-        color: #1b4332 !important;
-        font-family: Arial, sans-serif;
-        font-weight: bold;
+        color: #4caf50 !important;
+        font-family: 'Arial Black', Gadget, sans-serif;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
     }
     h3 {
-        color: #2d6a4f !important;
+        color: #81c784 !important;
         font-weight: bold;
-        border-bottom: 2px solid #b7e4c7;
+        border-bottom: 2px solid #2e7d32;
         padding-bottom: 5px;
     }
-    .card-ambiental {
-        background-color: #ffffff;
-        padding: 20px;
+    .panel-header {
+        background-color: #112d24;
+        padding: 15px;
         border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        border: 1px solid #2e7d32;
         margin-bottom: 20px;
-        border-left: 5px solid #40916c;
+        text-align: center;
     }
     </style>
 """, unsafe_allow_html=True)
 
-st.title("🌱 Análisis Lógico de Contaminación Ambiental")
-st.write("Herramienta interactiva para evaluar el impacto de las acciones ambientales en el aire.")
+st.markdown('<div class="panel-header"><h1>TABLA DE VERDAD</h1><p style="color:#81c784; font-weight:bold; margin:0;">CASO 3: CONTROL DE CONTAMINACIÓN AMBIENTAL</p></div>', unsafe_allow_html=True)
 
-# Definición clara de las variables
-st.markdown("""
-<div class="card-ambiental">
-    <h3>📋 Enunciados del Modelo</h3>
-    <ul>
-        <li><b>p:</b> Se reducen las emisiones contaminantes.</li>
-        <li><b>q:</b> Se aplican políticas ambientales.</li>
-        <li><b>r:</b> Mejora la calidad del aire.</li>
-    </ul>
-</div>
-""", unsafe_allow_html=True)
+# Sección de Variables
+st.subheader("📌 VARIABLES DEL MODELO")
+col_v1, col_v2, col_v3 = st.columns(3)
+with col_v1:
+    st.markdown("**p:** Se reducen las emisiones contaminantes.")
+with col_v2:
+    st.markdown("**q:** Se implementan políticas ambientales.")
+with col_v3:
+    st.markdown("**r:** Mejora la calidad del aire.")
 
-st.subheader("📐 Regla Lógica")
-st.write("Si se reducen las emisiones (p) Y se aplican políticas (q), entonces debe mejorar la calidad del aire (r):")
-st.latex(r"(p \land q) \rightarrow r")
+# Nueva Fórmula Lógica
+st.subheader("📐 FÓRMULA LÓGICA DEL CASO")
+st.info("Evaluación conjunta de las condiciones de impacto:")
+st.latex(r"(p \rightarrow r) \land (q \rightarrow r)")
 
-# Botones de control con nombres naturales
-st.subheader("🎛️ Estado Actual de los Enunciados")
-st.write("Activa o desactiva las condiciones para ver cómo responde el modelo:")
-
+# Panel Interactivos (Estado de los interruptores)
+st.subheader("🎛️ ESTADO ACTUAL DE LOS ENUNCIADOS")
 col1, col2, col3 = st.columns(3)
 with col1:
     val_p = st.checkbox("Se reducen emisiones (p)", value=False)
 with col2:
-    val_q = st.checkbox("Se aplican políticas (q)", value=False)
+    val_q = st.checkbox("Se implementan políticas (q)", value=False)
 with col3:
-    val_r = st.checkbox("Mejora el aire (r)", value=False)
+    val_r = st.checkbox("Mejora la calidad del aire (r)", value=False)
 
-# Evaluación de la regla condicional
-antecedente = val_p and val_q
-regla_se_cumple = not antecedente or val_r
+# Operaciones lógicas basadas estrictamente en la nueva tabla
+cond_p_r = not val_p or val_r
+cond_q_r = not val_q or val_r
+resultado_final = cond_p_r and cond_q_r
 
-# Mensajes directos y naturales
-st.subheader("📢 Mensaje del Sistema")
-
-if regla_se_cumple:
+# Mensaje del Sistema e Interpretación
+st.subheader("📢 INTERPRETACIÓN DEL ESCENARIO")
+if resultado_final:
     st.success(
-        "✅ **¡Es así!** Los enunciados seleccionados cumplen con la regla establecida."
+        "🟢 **Fórmula VERDADERA:** Lógicamente válido y consistente con el diseño del control ambiental."
     )
 else:
     st.error(
-        "❌ **¡No es así!** Se redujeron las emisiones y se aplicaron políticas, pero el aire NO mejoró. "
-        "Esto contradice directamente la regla del modelo."
+        "🔴 **Fórmula FALSA:** El resultado (r) NO se cumple, pero al menos una de las acciones (p o q) sí se ejecutó. Esto invalida el modelo."
     )
 
-# Tabla de Verdad
-st.subheader("📊 Tabla de Verdad del Modelo")
+# Nueva Tabla de Verdad idéntica a la imagen
+st.subheader("📊 MATRIZ DE EVALUACIÓN COMPLETA")
 
 filas = []
+# Mismo orden de filas que tu imagen (V,V,V -> V,V,F -> V,F,V ...)
 for p in [True, False]:
     for q in [True, False]:
         for r in [True, False]:
-            ant = p and q
-            regla = not ant or r
+            p_r = not p or r
+            q_r = not q or r
+            final = p_r and q_r
             filas.append({
-                "p (Emisiones)": "Verdadero" if p else "Falso",
-                "q (Políticas)": "Verdadero" if q else "Falso",
-                "r (Calidad Aire)": "Verdadero" if r else "Falso",
-                "Operación (p ∧ q)": "Verdadero" if ant else "Falso",
-                "Resultado de la Regla": "V" if regla else "F"
+                "p (Emisiones)": "V" if p else "F",
+                "q (Políticas)": "V" if q else "F",
+                "r (Calidad Aire)": "V" if r else "F",
+                "p → r": "V" if p_r else "F",
+                "q → r": "V" if q_r else "F",
+                "Resultado Final (Fórmula)": "🟢 V" if final else "🔴 F"
             })
 
 df_tabla = pd.DataFrame(filas)
 
-# Función de resaltado corregida (en singular)
-def resaltar_escenario_activo(row):
-    match_p = row["p (Emisiones)"] == ("Verdadero" if val_p else "Falso")
-    match_q = row["q (Políticas)"] == ("Verdadero" if val_q else "Falso")
-    match_r = row["r (Calidad Aire)"] == ("Verdadero" if val_r else "Falso")
+# Función para resaltar la fila activa según las casillas marcadas
+def resaltar_fila_activa(row):
+    match_p = row["p (Emisiones)"] == ("V" if val_p else "F")
+    match_q = row["q (Políticas)"] == ("V" if val_q else "F")
+    match_r = row["r (Calidad Aire)"] == ("V" if val_r else "F")
     
     if match_p and match_q and match_r:
-        return ['background-color: #d8f3dc; color: #1b4332; font-weight: bold'] * len(row)
+        return ['background-color: #1b4d3e; color: #fff; font-weight: bold'] * len(row)
     return [''] * len(row)
 
-# Mostrar la tabla en la web
-st.dataframe(df_tabla.style.apply(resaltar_escenario_activo, axis=1), use_container_width=True)
+st.dataframe(df_tabla.style.apply(resaltar_fila_activa, axis=1), use_container_width=True)
